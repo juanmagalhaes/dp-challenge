@@ -5,5 +5,5 @@ export function stripQuoteFunctional(str) {
 
 // Regex approach
 export function stripQuoteWithRegex(str) {
-  return str.split('').filter(c => c !== '"').join('');
+  return str.replace(/\"/g, '');
 }
