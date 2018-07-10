@@ -1,13 +1,13 @@
 import moment from 'moment';
 import invariant from 'invariant';
 
-const FORMAT = 'YYYY-MM-DDTHH:mm:ss.SS'
+const DEFAULT_FORMAT = 'YYYY-MM-DDTHH:mm:ss.SS';
 
-function toMoment(dt, format=FORMAT) {
-  return moment(dt, format, true);
+function toMoment(stringDate, format=DEFAULT_FORMAT) {
+  return moment(stringDate, format, true);
 }
 
-function toStringFormat(someMoment, format=FORMAT) {
+function toStringFormat(someMoment, format=DEFAULT_FORMAT) {
   return someMoment.format(format);
 }
 
@@ -28,11 +28,11 @@ function toMomentInterval(interval) {
 
   validateInterval(startingMoment, endingMoment);
 
-  return { start, end }
+  return { start, end };
 }
 
 export function getAvailableIntervals({ start, end }, unavailableIntervals) {
-  const interval = toMomentInterval({ start, end })
+  const interval = toMomentInterval({ start, end });
   const startingMoment = toMoment(interval.start);
   const endingMoment = toMoment(interval.end);
 

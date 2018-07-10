@@ -15,7 +15,7 @@ const availableIntervals = [
 ];
 
 describe('Question 4 => Available intervals', () => {
-  test('availableIntervals', () => {
+  test('getAvailableIntervals', () => {
     expect(getAvailableIntervals(interval, unavailableIntervals)).toEqual(availableIntervals)
   });
 });
