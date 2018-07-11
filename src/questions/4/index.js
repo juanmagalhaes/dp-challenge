@@ -32,9 +32,10 @@ function toMomentInterval(interval) {
 }
 
 export function getAvailableIntervals({ start, end }, unavailableIntervals) {
-  const interval = toMomentInterval({ start, end });
-  const startingMoment = toMoment(interval.start);
-  const endingMoment = toMoment(interval.end);
+  const {
+    start: startingMoment,
+    end: endingMoment
+  } = toMomentInterval({ start, end });
 
   const availableIntervals = [];
 
