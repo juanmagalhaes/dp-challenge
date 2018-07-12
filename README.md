@@ -1,7 +1,27 @@
 # DP Challenge!
+
 ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg) [![CircleCI](https://circleci.com/gh/juanmagalhaes/dp-challenge.svg?style=svg)](https://circleci.com/gh/juanmagalhaes/dp-challenge)
 
-## Instructions to run it locally
+This project was bootstrap with creat-react-app and then ejected.
+
+## Folder structure
+
+```
+dp-challenge/
+  public/
+    # All web public content
+  scripts/
+    # any custom script
+  config/
+    # all general configuration including build, test, devserver and more
+  src/
+    components/
+      # all of the project components
+    questions/
+      # folders named 1 to 7 with the questions code implementation entry point.
+```
+
+## Project commands
 
 ```
 # Install dependencies
@@ -16,3 +36,16 @@ yarn or npm test
 # Build
 yarn build or npm run build
 ```
+
+## How to check up on the questions
+
+### Questions 1 to 4 - algorithms.
+
+- Source code and test code for the questions are in `src/questions/[questionNumber]`.
+- Run tests to ensure that the functions work as they should.
+
+### Questions 7 - SegmentControl component
+
+- Run the dev server with `yarn start` to see the component being used in several diferent ways.
+- `src/questions/7` folder contains `SegmentControl` component usage examples.
+- `src/components/SegmentControl` folder contains all the implementation and test files.
