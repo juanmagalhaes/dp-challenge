@@ -1,7 +1,8 @@
 import { stripQuoteFunctional, stripQuoteWithRegex } from "./";
 
-const quotedString = `"s'''dj"""asd'asld"dskdja"sdjlaskjdalskj'dSDJKSD"JKSDLKSJD"'`;
-const unquotedString = "sdjasdaslddskdjasdjlaskjdalskjdSDJKSDJKSDLKSJD";
+const quotedString = `"s'''dj"""asd'asndmas‘‘md’nmr””kewrm“““ewrmwemrld"dskdja"sdjlaskjdalskj'dSDJKSD"JKSDLKSJD"'`;
+const unquotedString =
+  "sdjasdasndmasmdnmrkewrmewrmwemrlddskdjasdjlaskjdalskjdSDJKSDJKSDLKSJD";
 
 describe("Question 1 => Function to strip quotes", () => {
   test("Functional approach => stripQuoteFunctional", () => {
