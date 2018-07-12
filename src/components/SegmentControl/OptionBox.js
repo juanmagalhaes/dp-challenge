@@ -12,6 +12,23 @@ Box.Inner = styled.div`
   display: inline-flex;
   padding: ${spacing.px.small};
   width: 100%;
+
+  ${({ small }) =>
+    small &&
+    `
+    padding: ${spacing.px.medium};
+  `} ${({ mini, dark }) =>
+    mini &&
+    `
+    background: ${colors.catskillWhite};
+    border-radius: ${spacing.px.small};
+    padding: 0;
+
+    ${dark &&
+      `
+      background: ${colors.elm};
+    `}
+  `};
 `;
 
 Box.Outer = styled.div`
@@ -33,12 +50,12 @@ Box.Outer = styled.div`
   ${({ mini }) =>
     mini &&
     `
-    padding: ${spacing.px.small};
+    padding: ${spacing.px.medium};
   `}
 `;
 
-export default ({ children, dark, ...rest }) => (
-  <Box.Outer dark={dark} {...rest}>
-    <Box.Inner dark={dark}>{children}</Box.Inner>
+export default ({ children, ...rest }) => (
+  <Box.Outer {...rest}>
+    <Box.Inner {...rest}>{children}</Box.Inner>
   </Box.Outer>
 );

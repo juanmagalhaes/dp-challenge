@@ -20,27 +20,34 @@ const Option = styled.span`
     padding: ${spacing.px.medium} ${spacing.px.large};
   `}
 
-  ${({ mini }) =>
-    mini &&
-    `
-    padding: ${spacing.px.small} ${spacing.px.medium};
-    font-size: 1rem;
-  `}
-
   ${({ width }) => width && `flex: 1;`}
 
-  ${({ selected, dark }) =>
-    selected &&
+  ${({ active, dark }) =>
+    active &&
     `
     background-color: ${dark ? colors.white : colors.jellyBean};
     color: ${dark ? colors.jellyBean : colors.white};
   `}
+
+  ${({ mini, active, dark }) =>
+    mini &&
+    `
+    padding: ${spacing.px.small} ${spacing.px.medium};
+    font-size: 1rem;
+
+    ${!active &&
+      !dark &&
+      `
+      background: ${colors.catskillWhite};
+    `}
+  `}
+
 `;
 
 Option.propTypes = {
   dark: PropTypes.bool,
   mini: PropTypes.bool,
-  selected: PropTypes.bool,
+  active: PropTypes.bool,
   small: PropTypes.bool,
   width: PropTypes.string
 };

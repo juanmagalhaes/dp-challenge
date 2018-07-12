@@ -48,22 +48,24 @@ export default compose(
   mapProps(({ children, ...props }) => {
     const enhanceChild = (child, index = 0) => {
       return cloneElement(child, {
+        ...child.props,
         dark: props.dark,
         key: index,
         onClick: evt => {
-          props.onChildClick(index);
-          if (props.onChange) {
+          if (props.onChange && props.active !== index) {
             props.onChange({ ...evt, type: "change" }, index);
           }
+
           if (child.props.onClick) {
             child.props.onClick(evt);
           }
+
+          props.onChildClick(index);
         },
         mini: props.mini,
-        selected: props.active === index,
+        active: props.active === index,
         small: props.small,
-        width: props.width,
-        ...child.props
+        width: props.width
       });
     };
 

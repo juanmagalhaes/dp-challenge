@@ -1,64 +1,113 @@
 import React, { Fragment } from "react";
-import styled from "styled-components";
 
-import { spacing } from "app/styles";
 import SegmentControl, { Option } from "app/components/SegmentControl";
-
-const Box = styled.div`
-  padding: ${spacing.px.medium};
-`;
+import { DisplayBox } from "app/components";
 
 const Question7 = () => (
   <Fragment>
-    <Box>
-      <SegmentControl>
-        <Option>Option</Option>
-      </SegmentControl>
-    </Box>
-
-    <Box>
+    <DisplayBox title="With 2 options">
       <SegmentControl>
         <Option>Option</Option>
         <Option>Option</Option>
       </SegmentControl>
-    </Box>
+    </DisplayBox>
 
-    <Box>
+    <DisplayBox title="With 2 options and custom width">
+      <SegmentControl width="550px">
+        <Option>Option</Option>
+        <Option>Option</Option>
+      </SegmentControl>
+    </DisplayBox>
+
+    <DisplayBox title="With 3 options and the second is selected by default">
       <SegmentControl>
         <Option>Option</Option>
         <Option selected>Option</Option>
         <Option>Option</Option>
       </SegmentControl>
-    </Box>
+    </DisplayBox>
 
-    <Box>
-      <SegmentControl dark width="800px">
+    <DisplayBox title="With several options">
+      <SegmentControl>
+        <Option>Option</Option>
+        <Option>Option</Option>
+        <Option>Option</Option>
+        <Option>Option</Option>
+        <Option>Option</Option>
+        <Option>Option</Option>
+        <Option>Option</Option>
+        <Option>Option</Option>
         <Option>Option</Option>
         <Option>Option</Option>
       </SegmentControl>
-    </Box>
+    </DisplayBox>
 
-    <Box>
+    <DisplayBox title="Dark theme">
       <SegmentControl dark>
         <Option>Option</Option>
         <Option>Option</Option>
         <Option selected>Option</Option>
+        <Option>Option</Option>
       </SegmentControl>
-    </Box>
+    </DisplayBox>
 
-    <Box>
+    <DisplayBox title="Small">
       <SegmentControl small>
         <Option>Option</Option>
         <Option>Option</Option>
       </SegmentControl>
-    </Box>
+    </DisplayBox>
 
-    <Box>
-      <SegmentControl mini>
+    <DisplayBox title="Samll with dark theme">
+      <SegmentControl dark small>
+        <Option>Option</Option>
+        <Option selected>Option</Option>
         <Option>Option</Option>
         <Option>Option</Option>
       </SegmentControl>
-    </Box>
+    </DisplayBox>
+
+    <DisplayBox title="Mini">
+      <SegmentControl mini>
+        <Option>Option</Option>
+        <Option>Option</Option>
+        <Option>Option</Option>
+        <Option>Option</Option>
+        <Option>Option</Option>
+      </SegmentControl>
+    </DisplayBox>
+
+    <DisplayBox title="Mini dark">
+      <SegmentControl dark mini>
+        <Option>Option</Option>
+        <Option>Option</Option>
+        <Option>Option</Option>
+        <Option>Option</Option>
+        <Option>Option</Option>
+      </SegmentControl>
+    </DisplayBox>
+
+    <DisplayBox title="With change handler">
+      <SegmentControl
+        onChange={(_, idx) => alert(`You selected option ${idx + 1}`)}
+      >
+        <Option>Option</Option>
+        <Option>Option</Option>
+        <Option selected>Option</Option>
+        <Option>Option</Option>
+        <Option>Option</Option>
+      </SegmentControl>
+    </DisplayBox>
+
+    <DisplayBox title="With Option click handler (click on Option 2)">
+      <SegmentControl>
+        <Option>Option</Option>
+        <Option onClick={() => alert("Clicked on Option 2")}>Option</Option>
+        <Option>Option</Option>
+        <Option>Option</Option>
+        <Option selected>Option</Option>
+      </SegmentControl>
+    </DisplayBox>
   </Fragment>
 );
 
