@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Question 7 => SegmentControl render with 2 children 1`] = `
+<withState(withHandlers(mapProps(SegmentControl)))>
+  <Option>
+    Option 1
+  </Option>
+  <Option>
+    Option 2
+  </Option>
+</withState(withHandlers(mapProps(SegmentControl)))>
+`;
+
+exports[`Question 7 => SegmentControl render with Option selected 1`] = `
+<withState(withHandlers(mapProps(SegmentControl)))>
+  <Option>
+    Option 1
+  </Option>
+  <Option
+    selected={true}
+  >
+    Option 2
+  </Option>
+</withState(withHandlers(mapProps(SegmentControl)))>
+`;
+
+exports[`Question 7 => SegmentControl render with dark theme 1`] = `
+<withState(withHandlers(mapProps(SegmentControl)))
+  dark={true}
+>
+  <Option>
+    Option 1
+  </Option>
+  <Option>
+    Option 2
+  </Option>
+</withState(withHandlers(mapProps(SegmentControl)))>
+`;
+
+exports[`Question 7 => SegmentControl render with mini prop 1`] = `
+<withState(withHandlers(mapProps(SegmentControl)))
+  mini={true}
+>
+  <Option>
+    Option 1
+  </Option>
+  <Option>
+    Option 2
+  </Option>
+</withState(withHandlers(mapProps(SegmentControl)))>
+`;
+
+exports[`Question 7 => SegmentControl render with several children 1`] = `
+<withState(withHandlers(mapProps(SegmentControl)))>
+  <Option>
+    Option 1
+  </Option>
+  <Option>
+    Option 2
+  </Option>
+  <Option>
+    Option 3
+  </Option>
+  <Option>
+    Option 4
+  </Option>
+  <Option>
+    Option 5
+  </Option>
+</withState(withHandlers(mapProps(SegmentControl)))>
+`;
+
+exports[`Question 7 => SegmentControl render with small prop 1`] = `
+<withState(withHandlers(mapProps(SegmentControl)))
+  small={true}
+>
+  <Option>
+    Option 1
+  </Option>
+  <Option>
+    Option 2
+  </Option>
+</withState(withHandlers(mapProps(SegmentControl)))>
+`;
