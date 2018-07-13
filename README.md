@@ -2,7 +2,7 @@
 
 ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg) [![CircleCI](https://circleci.com/gh/juanmagalhaes/dp-challenge.svg?style=svg)](https://circleci.com/gh/juanmagalhaes/dp-challenge)
 
-This project was bootstrap with creat-react-app and then ejected.
+This project was bootstrap with create-react-app and then ejected.
 
 ## Folder structure
 
@@ -46,6 +46,6 @@ yarn build or npm run build
 
 ### Questions 7 - SegmentControl component
 
-- Run the dev server with `yarn start` to see the component being used in several diferent ways.
+- Run the dev server with `yarn start` to see the component being used in several different ways.
 - `src/questions/7` folder contains `SegmentControl` component usage examples.
 - `src/components/SegmentControl` folder contains all the implementation and test files.
