@@ -7,7 +7,7 @@ describe("Question 3 => Slugify email address", () => {
     expect(slugify(simple)).toEqual(expectedOutput);
   });
 
-  const withSomeSpecialCharacters = "batman&robin@dc.comics";
+  const withSomeSpecialCharacters = "batman&robin!#$%'*+-/=?^_`{|}~@dc.comics";
   test(`With some special characters=> ${withSomeSpecialCharacters}`, () => {
     const expectedOutput = "batman-and-robin-at-dc-dot-comics";
     expect(slugify(withSomeSpecialCharacters)).toEqual(expectedOutput);
