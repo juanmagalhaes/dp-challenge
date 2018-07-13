@@ -47,7 +47,7 @@ with flow or typescript.
 
 ## Recompose
 
-Recompose has a nice API for HOC composition and a lot of helper hocs to use react
+Recompose has a nice API for HOC composition and a lot of helper HOCs to use react
 in a more functional way.
 
 It excels on creating reusable and composable container components.
@@ -90,14 +90,14 @@ export const STARTING_OCTAVE = 1;
 
 They would be in some file like `src/constants.js` for example
 
-I would start by creating the `ContextProvider` component. This components would hold the
-state of the keys pressed, the octaves to which these keys belongs to and the pitch info
-because this info together is used to create the tone, and the power state to know if the
-input should be processed at all.
+I would start by creating the `ContextProvider` component. This component would hold the
+state of the keys pressed, the octaves to which these keys belongs to, and the pitch info
+because this info together is used to create the tone, and last but not least the power
+state to know if the input should be processed at all.
 
 This `ContextProvider` would basically hold app state and expose handler methods to update
-application state through context API it would render children so that it can just be put
-in higher place on the component tree.
+application state through context API it would just render children so that it can be placed
+in a higher place on the component tree.
 
 To create this container of state and state change handlers, I would use recompose helpers
 like this:
