@@ -168,7 +168,7 @@ export const ContextProvider = compose(
     },
 
     // it needs to be turned on in order to decrease pich
-    // equals to increasePitch but decrement by one instead of increase until it reaches the lowest octave
+    // equals to increasePitch but decrement by one instead of increasing. Until it reaches the lowest octave
     decreasePitch: props => () => ...,
 
     // A pressed key should aways be associated with the octave that it belongs to
