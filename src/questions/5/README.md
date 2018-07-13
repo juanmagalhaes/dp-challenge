@@ -71,7 +71,7 @@ Set of tools to enable ES6 features, linting and several other things.
 
 First of all lets define some important constants for the application:
 
-```
+```JavaScript
 // Musical notes B# === C and E# === F
 export const NOTES = ['A', 'A#', 'B', 'C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#'];
 
