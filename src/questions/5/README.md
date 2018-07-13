@@ -102,7 +102,7 @@ in a higher place on the component tree.
 To create this container of state and state change handlers, I would use recompose helpers
 like this:
 
-```
+```JavaScript
 import React, { createContext } from 'react';
 import {
   compose,
