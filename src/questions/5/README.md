@@ -25,7 +25,7 @@ To construct this piano interface I would use the same stack present in this rep
 
 ## React
 
-React has two important features that would be of great help in the construction the piano interface.
+React has some important features that would be of great help in the construction the piano interface.
 
 ### Componentization
 
