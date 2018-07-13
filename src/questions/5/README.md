@@ -171,18 +171,18 @@ export const ContextProvider = compose(
     // equals to increasePitch but decrement by one instead of increasing. Until it reaches the lowest octave
     decreasePitch: props => () => ...,
 
-    // A pressed key should aways be associated with the octave that it belongs to
-    pressKey: ({ power, pressedKeys, setPressedKeys }) => (key, octave) => {
+    // A pressed key should aways have a note and an octave that it belongs to
+    pressKey: ({ power, pressedKeys, setPressedKeys }) => (note, octave) => {
       if (power) {
-        // will create a new set of pressed keys with its octaves adding the new pressed key
-        setPressedKeys(pressedKeys.concat({ key, octave }));
+        // will create a new set of pressed keys by adding the new pressed key
+        setPressedKeys(pressedKeys.concat({ note, octave }));
       }
     },
 
-    releaseKey: ({ power, pressedKeys, setPressedKeys }) => (key, octave) => {
+    releaseKey: ({ power, pressedKeys, setPressedKeys }) => (note, octave) => {
       if (power) {
-        const keepAllBut = (x) => (x.key !== key && x.octave !== octave);
-        // will create a new set of pressed keys with its octaves without the released key
+        const keepAllBut = (x) => (x.note !== note && x.octave !== octave);
+        // will create a new set of pressed keys without the released key
         setPressedKeys(pressedKeys.filter(keepAllBut));
       }
     },
@@ -197,6 +197,7 @@ export const ContextProvider = compose(
     pressKey,
     releaseKey,
     togglePower,
+    pressedKeys,
   }) => ({
     children,
     // scope then all inside prop context
@@ -207,6 +208,7 @@ export const ContextProvider = compose(
       pressKey,
       releaseKey,
       togglePower,
+      pressedKeys
     }
   }))
 
@@ -225,3 +227,223 @@ export const withContext = Component => props => (
   <Consumer>
 )
 ```
+
+After creating the `ContextProvider` we need to place it in our component tree
+in a high place, for instance:
+
+```JavaScript
+// supose this is src/index.js file
+
+import React from 'react';
+import { render } from 'react-dom';
+
+// First app component
+import Piano from './components/Piano';
+import { ContextProvider } from './components/MainContext';
+
+render(
+  <ContextProvider>
+    <Piano />
+  </ContextProvider>,
+  document.getElementById('root')
+);
+```
+
+With both `ContextProvider` and `withContext` our state machine is ready to be used
+and we can just plug it to our components to have access to its API.
+
+So now we can start to build our dumb interface components.
+
+For all the following components I'll assume that we created a `webpack` alias called `app`
+mapped to our `src` folder. So paths like `app/components` are equivalent
+to `projectRoot/src/components`.
+
+Lets start by creating our key component:
+
+```JavaScript
+// It would be placed inside src/components/Key
+import { compose, withPropTypes } from 'recompose'
+import PropTypes from 'prop-types';
+import styled from 'styled';
+
+import { withContext } from 'app/components/Context';
+
+// lets supose we created a util just to check if the note name contains the # in order to know if is sharp note
+import { isSharpNote } from 'app/utils/isSharpNote';
+
+const StyledKey = styled.div`
+  background: ${({ sharp }) => sharp ? 'black' : 'white'};
+  {({ pressed }) => pressed && `
+    background: ...; // give it a different style when it is pressed
+  `}
+  // all the other css properties to give style and positioning to the key
+  ...
+`;
+
+const Key = ({
+  context: {
+    pressKey,
+    releaseKey
+  },
+  note,
+  octave,
+  pressed
+}) => (
+  <StyledKey
+    pressed={pressed}
+    sharp={isSharpNote(note)}
+    onKeyDown={event => {
+      // check if this is the appropriate keyborad key for this key
+      // if it is so, then
+      pressKey(note, octave)
+    }}
+    onKeyUp={event => {
+      // check if this is the appropriate keyborad key for this key
+      // if it is so, then
+      releaseKey(note, octave)
+    }}
+  />
+);
+
+const propTypes = {
+  // all types expected by key
+  ...
+};
+
+// we need to wrap our component with `withContext` HOC to have access to our State
+export default compose(
+  withContext,
+  withPropTypes(propTypes)
+)(Key);
+```
+
+Now that we have our Key component and it can be pressed and released updating our context
+state accordingly, we can build our octave component
+
+An octave is nothing more than a set of keys for each note with a pitch. So it should look like this:
+
+```JavaScript
+// path to file src/components/Octave
+
+// imports ...
+
+import Key from 'app/components/key';
+import NOTES from 'app/constants';
+
+const Octave = ({
+  name, // Small, Great, ONE_LINE...
+  pressedKeys
+}) => NOTES.map(note => (
+  <Key
+    note={note}
+    octave={name}
+    pressed={pressedKeys.some(key => key.note === note && key.octave === name)}
+  />
+));
+
+export default Octave;
+```
+
+Now that we have an Octave is possible to create the whole keyboard with all of the octaves.
+
+```JavaScript
+// path to file src/components/Keyboard
+
+// imports ...
+
+import Octave from 'app/components/Octave';
+
+// Maybe create some styled div to work as a container around the Octave component if needed
+
+const Keyboard = ({
+  context: {
+    octaves,
+    pressedKeys
+  }
+}) => octaves.map(name => (
+  <Octave
+    name={name}
+    pressedKeys={pressedKeys}
+  />
+));
+
+export default compose(
+  withContext,
+  withPropTypes(propTypes)
+)(Keyboard);
+```
+
+And as simple as that we have our Keyboard component.
+
+Now we are only missing a our control panel component that will have a power button and
+the buttons to increase and decrease the pitch, and it would look something like this
+
+```JavaScript
+// path to file src/components/ControlPanel
+
+// imports ...
+
+const Container = styled.div`
+  ... // css properties
+`
+
+const PitchControls = styled.div`
+  ... // css properties
+`
+
+const DecreaseButton = styled.button`
+  ... // css properties
+`
+
+const IncreaseButton = styled.button`
+  ... // css properties
+`
+
+const PowerButton = styled.button`
+  ... // css properties
+`
+
+const ControlPanel = ({
+  context: {
+    togglePower,
+    increasePitch,
+    decreasePitch
+  }
+}) => (
+  <Container>
+    <PitchControls>
+      <IncreaseButton onClick={() => increasePitch()} />
+      <DecreaseButton onClick={() => decreasePitch()} />
+    </PitchControls>
+    <PowerButton onClick={() => togglePower()} />
+  </Container>
+);
+
+export default compose(
+  withContext,
+  withPropTypes(propTypes)
+)(Keyboard);
+```
+
+And to finish our work we just need to wrap everything inside a Piano component like so:
+
+```JavaScript
+// path to file src/components/Piano
+
+// imports ...
+import Keyboard from 'src/components/Keyboard';
+import ControlPanel from 'src/components/ControlPanel';
+
+const PianoBody = styled.div`
+  ... // css properties
+`
+
+export default () => (
+  <PianoBody>
+    <ControlPanel />
+    <Keyboard />
+  </PianoBody>
+);
+```
+
+That are the core concepts of how this piano interface would work.
