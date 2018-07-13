@@ -44,6 +44,10 @@ yarn build or npm run build
 - Source code and test code for the questions are in `src/questions/[questionNumber]`.
 - Run tests to ensure that the functions work as they should.
 
+### Question 5 and 6 - Description
+
+- [Question 5](https://github.com/juanmagalhaes/dp-challenge/tree/master/src/questions/5)
+
 ### Questions 7 - SegmentControl component
 
 - Run the dev server with `yarn start` to see the component being used in several different ways.
