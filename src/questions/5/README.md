@@ -5,7 +5,7 @@
 - The interface for the piano needs to consist of at least 3 octaves
 - The piano has a pitch modifier (higher pitch or lower pitch). The pitch can be
   modified by the user in a continuous fashion.
-  I shall label Pitches with ![Helmholtz pitch notation](https://en.wikipedia.org/wiki/Helmholtz_pitch_notation#Staff_representation)
+  I shall label Pitches with [Helmholtz pitch notation](https://en.wikipedia.org/wiki/Helmholtz_pitch_notation#Staff_representation)
 - Multiple keys can be pressed at a time to create chords. The same note may be
   pressed within different octaves.
 - The combined keys which the user is pressing along with any pitch modification
