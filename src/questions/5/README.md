@@ -218,7 +218,7 @@ export const ContextProvider = compose(
 ));
 
 // Create a HOC to inject the context on other components
-// Inject context as a prop named context to decrease the chance prop name clashing
+// Inject the prop with name context to decrease the chance of prop name clashing
 export const withContext = Component => props => (
   <Consumer>
     {context => <Component context={context} {...props} />}
