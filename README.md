@@ -47,6 +47,7 @@ yarn build or npm run build
 ### Question 5 and 6 - Description
 
 - [Question 5](https://github.com/juanmagalhaes/dp-challenge/tree/master/src/questions/5)
+- [Question 6](https://github.com/juanmagalhaes/dp-challenge/tree/master/src/questions/6)
 
 ### Questions 7 - SegmentControl component
 

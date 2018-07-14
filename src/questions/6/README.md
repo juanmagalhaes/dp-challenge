@@ -4,7 +4,7 @@
 
 With the following model it is possible to fulfill all of the application requirements.
 
-![DB Model](https://github.com/juanmagalhaes/dp-challenge/blob/master/src/questions/6/AssemblyDBModel.png)
+![DB Model](https://github.com/juanmagalhaes/dp-challenge/blob/master/src/questions/6/AssemblyLineModel.png)
 
 ### Multiple clients
 
