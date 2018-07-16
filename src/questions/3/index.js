@@ -7,6 +7,7 @@ export function slugify(str) {
     .replace(/\_/g, "-") // Replace spaces with -
     .replace(/\s+/g, "-") // Replace spaces with -
     .replace(handledSpecialCharacters, keepFirst) // Ends repetition
+    .replace(/\+/g, "-plus-") // Replace @ with '-at-'
     .replace(/@/g, "-at-") // Replace @ with '-at-'
     .replace(/\./g, "-dot-") // Replace @ with '-at-'
     .replace(/&/g, "-and-") // Replace & with 'and'
