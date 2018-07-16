@@ -7,10 +7,22 @@ describe("Question 3 => Slugify email address", () => {
     expect(slugify(simple)).toEqual(expectedOutput);
   });
 
-  const withSomeSpecialCharacters = "batman&robin!#$%'*+-/=?^_`{|}~@dc.comics";
+  const withSomeSpecialCharacters = "email!#$%'*-/=?^_`{|}~@domain.io";
   test(`With some special characters=> ${withSomeSpecialCharacters}`, () => {
-    const expectedOutput = "batman-and-robin-at-dc-dot-comics";
+    const expectedOutput = "email-at-domain-dot-io";
     expect(slugify(withSomeSpecialCharacters)).toEqual(expectedOutput);
+  });
+
+  const withAnd = "batman&robin@dc.comics";
+  test(`With & character=> ${withAnd}`, () => {
+    const expectedOutput = "batman-and-robin-at-dc-dot-comics";
+    expect(slugify(withAnd)).toEqual(expectedOutput);
+  });
+
+  const withPlus = "one+two@three.numbers";
+  test(`With + character => ${withPlus}`, () => {
+    const expectedOutput = "one-plus-two-at-three-dot-numbers";
+    expect(slugify(withPlus)).toEqual(expectedOutput);
   });
 
   const trickyCornerCase = `"John ... Doe &&&  Me@"@nowhere.com`;
